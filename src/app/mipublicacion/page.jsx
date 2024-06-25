@@ -96,12 +96,73 @@ export default function Component() {
       Mira mis últimas publicaciones
     </p>
   </div>
-      </div>
+</div>
           <div className="grid grid-cols-1 md:grid-cols-[260px_1fr] gap-8">
             <div className="bg-white dark:bg-gray rounded-lg shadow-md p-6 flex flex-col gap-6">
+              <h3 className="text-xl font-semibold">Filters</h3>
+              <Accordion type="single" collapsible>
+                <AccordionItem value="categories">
+                  <AccordionTrigger className="text-base">
+                    Categorias
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="grid gap-2">
+                      {availableCategories.map((categoria) => (
+                        <label
+                          key={categoria}
+                          className="flex items-center gap-2 font-normal"
+                        >
+                          <input
+                            type="checkbox"
+                            value={categoria}
+                            checked={selectedCategories.includes(categoria)}
+                            onChange={(e) => handleCategoryChange(e)}
+                            className="peer h-4 w-4 shrink-0 rounded-sm border-2 border-black ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:ring-offset-black dark:focus-visible:ring-white"
+                          />
+                          <span className="sans-serif">{categoria}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="provinces">
+                  <AccordionTrigger className="text-base">
+                    Provincias
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="grid gap-2">
+                      {availableProvinces.map((provincia) => (
+                        <label
+                          key={provincia}
+                          className="flex items-center gap-2 font-normal"
+                        >
+                          <input
+                            type="checkbox"
+                            value={provincia}
+                            checked={selectedProvinces.includes(provincia)}
+                            onChange={(e) => handleProvinceChange(e)}
+                            className="peer h-4 w-4 shrink-0 rounded-sm border-2 border-black ring-offset-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-black focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 dark:ring-offset-black dark:focus-visible:ring-white"
+                          />
+                          <span className="sans-serif">{provincia}</span>
+                        </label>
+                      ))}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+                <AccordionItem value="Publicaciones">
+                  <AccordionTrigger className="text-base">
+                    Publicaciones
+                  </AccordionTrigger>
+                  <AccordionContent>
+                    <div className="grid gap-2">
+                      {/* Aquí irían los checkboxes de publicaciones */}
+                    </div>
+                  </AccordionContent>
+                </AccordionItem>
+              </Accordion>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {filteredJobPostings.map((posting) => (
+              {filteredJobPostings.map((posting) => (
                 <div
                   key={posting._id}
                   className="bg-white colorblanco rounded-lg shadow-md p-6 flex flex-col items-start gap-4"
@@ -123,7 +184,6 @@ export default function Component() {
                     </div>
                   </div>
                   <div className="font-semibold">${posting.costo}</div>
-                  <div className="font-semibold">Teléfono: {posting.telefono}</div>
                   <div className="text-left">
                     <p className="text-gray-500 dark:text-gray-400">
                       {posting.descripcionTrabajo}
@@ -154,6 +214,8 @@ export default function Component() {
               ))}
             </div>
           </div>
+          
+          
         </div>
       </section>
     </div>

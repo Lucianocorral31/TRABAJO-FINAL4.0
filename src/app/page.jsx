@@ -14,7 +14,7 @@ import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar"
 
 
 export default function Component() {
-  onst [jobPostings, setJobPostings] = useState([]);
+  const [jobPostings, setJobPostings] = useState([]);
 
   useEffect(() => {
     // Tu código existente para cargar las publicaciones del usuario
